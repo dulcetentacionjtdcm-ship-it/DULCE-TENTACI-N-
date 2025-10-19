@@ -4,27 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dulce Tentación — Catálogo</title>
-  <link rel="icon" href="1000314385.jpg" />
+  <link rel="icon" href="1000314172.jpg" />
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: url("1000314385.jpg") no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(180deg, #fff0f3 0%, #ffe6eb 100%);
       color: #4b2e28;
       padding: 50px 40px;
       overflow-x: hidden;
-      backdrop-filter: brightness(0.9);
     }
 
-    .site {
-      max-width: 1100px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
-    }
+    .site { max-width: 1100px; margin: 0 auto; }
 
     header {
       display: flex;
@@ -42,11 +33,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
 
     .brand h1 {
       margin: 0;
@@ -70,3 +57,154 @@
     .chip {
       background: #fff;
       border: 1px solid #f9c6d0;
+      padding: 10px 16px;
+      border-radius: 32px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .chip.active {
+      background: #ffe6eb;
+      border: 1px solid #f5a6b2;
+    }
+
+    .chip:hover {
+      background: #fddce5;
+      transform: scale(1.05);
+    }
+
+    .filters { margin: 20px 0 40px; text-align: center; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(34, 34, 34, 0.06);
+      border: 1px solid rgba(255, 192, 203, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 35px rgba(34, 34, 34, 0.1);
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 17px;
+      color: #b23a48;
+      margin-bottom: 6px;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #6b5a4c;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-weight: 800;
+      font-size: 18px;
+      color: #d65c5c;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b5a4c;
+      font-size: 13px;
+      margin-top: 40px;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="logo">
+        <img src="IMG-20251018-WA0002.jpg" alt="Logo Dulce Tentación">
+      </div>
+      <div class="brand">
+        <h1>Dulce Tentación</h1>
+        <div>Sabor que enamora</div>
+      </div>
+    </header>
+
+    <main>
+      <h2>Catálogo</h2>
+      <div class="filters">
+        <span class="chip active" data-filter="all">Todos</span>
+        <span class="chip" data-filter="mediano">Medianos</span>
+        <span class="chip" data-filter="grande">Grandes</span>
+        <span class="chip" data-filter="diabetico">Diabéticos</span>
+      </div>
+
+      <section class="grid" id="catalogGrid"></section>
+    </main>
+
+    <footer>© <span id="ano"></span> Dulce Tentación — Hecho con amor.</footer>
+  </div>
+
+  <script>
+    const CATALOG = [
+      {category:'mediano', name:'Vainilla', size:'Mediano', price:50000},
+      {category:'mediano', name:'Vainilla Oreo', size:'Mediano', price:52000},
+      {category:'mediano', name:'Vainilla Chocolate', size:'Mediano', price:53000},
+      {category:'mediano', name:'Naranja', size:'Mediano', price:52000},
+      {category:'mediano', name:'Chocolate', size:'Mediano', price:60000},
+      {category:'mediano', name:'Zanahoria', size:'Mediano', price:60000},
+      {category:'grande', name:'Vainilla', size:'Grande', price:65000},
+      {category:'grande', name:'Vainilla Oreo', size:'Grande', price:70000},
+      {category:'grande', name:'Vainilla Chocolate', size:'Grande', price:70000},
+      {category:'grande', name:'Naranja', size:'Grande', price:70000},
+      {category:'grande', name:'Chocolate', size:'Grande', price:85000},
+      {category:'grande', name:'Zanahoria', size:'Grande', price:85000},
+      {category:'diabetico', name:'Cheesecake Frutilla (Diabético)', size:'Mediano', price:27000},
+      {category:'diabetico', name:'Cheesecake Frutilla (Diabético)', size:'Grande', price:37000},
+      {category:'diabetico', name:'Tiramisú (Diabético)', size:'Mediano', price:27000},
+      {category:'diabetico', name:'Tiramisú (Diabético)', size:'Grande', price:37000},
+    ];
+
+    const grid = document.getElementById('catalogGrid');
+
+    function money(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")}
+
+    function render(filter='all'){
+      grid.innerHTML='';
+      const items=CATALOG.filter(p=>filter==='all'?true:p.category===filter);
+      items.forEach((item)=>{
+        const el=document.createElement('div');
+        el.className='card';
+        el.innerHTML=`
+          <div class="name">${item.name}</div>
+          <div class="desc">${item.size}</div>
+          <div class="price">$${money(item.price)}</div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    render();
+
+    document.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+        render(chip.dataset.filter);
+      });
+    });
+
+    document.getElementById('ano').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
