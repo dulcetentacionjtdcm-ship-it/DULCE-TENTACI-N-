@@ -27,7 +27,7 @@
 
     .site { max-width: 1100px; margin: 0 auto; }
 
-    /* ---- CABECERA CON LOGO CENTRADO ---- */
+    /* ---- CABECERA ---- */
     header.hero-logo {
       display: flex;
       flex-direction: column;
@@ -37,57 +37,56 @@
       text-align: center;
     }
 
-    /* ---- LOGO PRINCIPAL ---- */
+    /* ---- LOGO ---- */
     .logo {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
+      width: 250px;
+      height: 180px;
+      border-radius: 25px;
       overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 30px rgba(255, 200, 150, 0.6), 0 0 60px rgba(255, 150, 100, 0.4);
+      box-shadow: 0 0 25px rgba(90, 50, 10, 0.5);
+      background: linear-gradient(135deg, rgba(255,230,200,0.9), rgba(255,210,170,0.8));
+      padding: 6px;
       animation: flotarLogo 4s ease-in-out infinite;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.5), rgba(255,255,255,0));
     }
 
     @keyframes flotarLogo {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.05); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .logo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
-      border-radius: 50%;
+      border-radius: 20px;
       transition: transform 0.5s ease, filter 0.5s ease;
     }
 
     .logo:hover img {
-      transform: scale(1.08);
-      filter: drop-shadow(0 0 15px rgba(255,200,150,0.9));
+      transform: scale(1.03);
+      filter: brightness(1.05);
     }
 
-    /* ---- TEXTO DE MARCA ---- */
+    /* ---- TEXTO MARCA ---- */
     .brand {
       margin-top: 18px;
-      padding: 12px 28px;
-      background: rgba(255, 245, 230, 0.85);
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 14px 28px;
+      background: rgba(255, 245, 230, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
       animation: brillar 3s ease-in-out infinite alternate;
     }
 
     @keyframes brillar {
-      from { box-shadow: 0 0 15px rgba(255, 200, 150, 0.3); }
-      to { box-shadow: 0 0 25px rgba(255, 180, 120, 0.6); }
+      from { box-shadow: 0 0 15px rgba(150, 100, 60, 0.3); }
+      to { box-shadow: 0 0 25px rgba(180, 120, 70, 0.6); }
     }
 
     .brand h1 {
       margin: 0;
       font-size: 42px;
       font-weight: 800;
-      background: linear-gradient(90deg, #b96f3b, #ffb57a, #b96f3b);
+      background: linear-gradient(90deg, #4b2e1e, #7b3f00, #4b2e1e);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
@@ -95,7 +94,7 @@
 
     .brand div {
       font-size: 18px;
-      color: #6b3e1e;
+      color: #5a3925;
       font-weight: 600;
       margin-top: 6px;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
@@ -103,14 +102,14 @@
 
     /* ---- CATÁLOGO ---- */
     h2 {
-      color: #7b3f00;
+      color: #4b2e1e;
       text-align: center;
       position: relative;
       display: inline-block;
       background: rgba(255, 250, 245, 0.85);
-      padding: 8px 20px;
-      border-radius: 16px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      padding: 10px 24px;
+      border-radius: 18px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       margin: 0 auto 30px;
       left: 50%;
       transform: translateX(-50%);
