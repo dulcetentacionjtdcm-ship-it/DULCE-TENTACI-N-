@@ -37,26 +37,37 @@
       text-align: center;
     }
 
-    /* ---- LOGO ---- */
+    /* ---- LOGO CON DEGRADADO ---- */
     .logo {
-      width: 300px;
-      height: auto;
-      overflow: hidden;
-      animation: flotarLogo 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 25px rgba(90, 50, 10, 0.4));
+      width: 340px;
+      height: 340px;
+      position: relative;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffb47b, #ff86a1, #ffd27f);
+      padding: 5px;
+      animation: bordeBrillo 4s linear infinite;
+      box-shadow: 0 0 30px rgba(255, 180, 120, 0.3);
     }
 
-    @keyframes flotarLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    @keyframes bordeBrillo {
+      0% { box-shadow: 0 0 25px rgba(255, 200, 150, 0.4); }
+      50% { box-shadow: 0 0 45px rgba(255, 180, 180, 0.6); }
+      100% { box-shadow: 0 0 25px rgba(255, 200, 150, 0.4); }
     }
 
     .logo img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      animation: flotarLogo 4s ease-in-out infinite;
       transition: transform 0.5s ease, filter 0.5s ease;
-      border-radius: 0;
+    }
+
+    @keyframes flotarLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     .logo:hover img {
@@ -64,7 +75,7 @@
       filter: brightness(1.1);
     }
 
-    /* ---- CATÁLOGO ---- */
+    /* ---- TÍTULO ---- */
     h2 {
       color: #4b2e1e;
       text-align: center;
@@ -79,6 +90,7 @@
       transform: translateX(-50%);
     }
 
+    /* ---- FILTROS ---- */
     .filters { margin: 20px 0 40px; text-align: center; }
 
     .chip {
@@ -106,6 +118,7 @@
       transform: scale(1.08);
     }
 
+    /* ---- TARJETAS ---- */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
