@@ -27,55 +27,81 @@
 
     .site { max-width: 1100px; margin: 0 auto; }
 
-    header {
+    /* ---- CABECERA CON LOGO CENTRADO ---- */
+    header.hero-logo {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-
-    .logo img { width: 100%; height: 100%; object-fit: cover; }
-
-    .brand {
+      margin-bottom: 50px;
       text-align: center;
-      position: relative;
-      background: rgba(255, 248, 240, 0.85);
-      padding: 15px 25px;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      animation: float 3s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+    /* ---- LOGO PRINCIPAL ---- */
+    .logo {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 200, 150, 0.6), 0 0 60px rgba(255, 150, 100, 0.4);
+      animation: flotarLogo 4s ease-in-out infinite;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.5), rgba(255,255,255,0));
+    }
+
+    @keyframes flotarLogo {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+      border-radius: 50%;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .logo:hover img {
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 15px rgba(255,200,150,0.9));
+    }
+
+    /* ---- TEXTO DE MARCA ---- */
+    .brand {
+      margin-top: 18px;
+      padding: 12px 28px;
+      background: rgba(255, 245, 230, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: brillar 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes brillar {
+      from { box-shadow: 0 0 15px rgba(255, 200, 150, 0.3); }
+      to { box-shadow: 0 0 25px rgba(255, 180, 120, 0.6); }
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 32px;
-      color: #7b3f00;
+      font-size: 42px;
       font-weight: 800;
-      text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
+      background: linear-gradient(90deg, #b96f3b, #ffb57a, #b96f3b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
     }
 
     .brand div {
-      font-size: 15px;
-      color: #5e3a23;
-      margin-top: 5px;
+      font-size: 18px;
+      color: #6b3e1e;
       font-weight: 600;
+      margin-top: 6px;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
     }
 
+    /* ---- CATÁLOGO ---- */
     h2 {
       color: #7b3f00;
       text-align: center;
@@ -194,7 +220,7 @@
     }
 
     .acciones button:first-child {
-      background: #25D366; /* WhatsApp */
+      background: #25D366;
     }
     .acciones button:first-child:hover {
       background: #20b85b;
@@ -202,7 +228,7 @@
     }
 
     .acciones button:last-child {
-      background: #E1306C; /* Instagram */
+      background: #E1306C;
     }
     .acciones button:last-child:hover {
       background: #c3225e;
@@ -224,9 +250,9 @@
 </head>
 <body>
   <div class="site">
-    <header>
+    <header class="hero-logo">
       <div class="logo">
-        <img src="IMG-20251018-WA0002.jpg" alt="Logo Dulce Tentación">
+        <img src="ChatGPT Image 18 oct 2025, 09_33_53 p.m..png" alt="Logo Dulce Tentación">
       </div>
       <div class="brand">
         <h1>Dulce Tentación</h1>
