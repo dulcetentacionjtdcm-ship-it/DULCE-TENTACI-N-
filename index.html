@@ -11,7 +11,7 @@
       margin: 0;
       font-family: "Poppins", sans-serif;
       background-image: url('046ea6db4e034b871e106a96bd9c9809.jpg');
-      background-size: 400px; /* puedes cambiar 300px o 500px según tu gusto */
+      background-size: 400px;
       background-repeat: repeat;
       background-position: 0 0;
       animation: fondoMovimiento 60s linear infinite;
@@ -20,7 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* Movimiento del fondo */
     @keyframes fondoMovimiento {
       0% { background-position: 0 0; }
       100% { background-position: 800px 800px; }
@@ -136,6 +135,30 @@
       color: #d65c5c;
     }
 
+    /* BOTONES */
+    .acciones {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .acciones button {
+      flex: 1;
+      background-color: #b23a48;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: background-color 0.3s ease;
+    }
+
+    .acciones button:hover {
+      background-color: #d65c5c;
+    }
+
     footer {
       text-align: center;
       color: #6b5a4c;
@@ -195,6 +218,19 @@
     const grid = document.getElementById('catalogGrid');
     function money(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")}
 
+    // --- Botones de pedido ---
+    function pedirPorWhatsApp(nombre, tamaño) {
+      const numero = "573245328182"; // SIN el "+"
+      const mensaje = encodeURIComponent(
+        `Hola 👋 quiero pedir una torta de ${nombre} tamaño ${tamaño} de Dulce Tentación 🍰`
+      );
+      window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+    }
+
+    function abrirInstagram() {
+      window.open("https://instagram.com/dulcetentacionjtdcm", "_blank");
+    }
+
     function render(filter='all'){
       grid.innerHTML='';
       const items=CATALOG.filter(p=>filter==='all'?true:p.category===filter);
@@ -205,6 +241,10 @@
           <div class="name">${item.name}</div>
           <div class="desc">${item.size}</div>
           <div class="price">$${money(item.price)}</div>
+          <div class="acciones">
+            <button onclick="pedirPorWhatsApp('${item.name}','${item.size}')">Pedir por WhatsApp</button>
+            <button onclick="abrirInstagram()">Instagram</button>
+          </div>
         `;
         grid.appendChild(el);
       });
