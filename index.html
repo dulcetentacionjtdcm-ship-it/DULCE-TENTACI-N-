@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -10,29 +10,20 @@
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background-image: url('046ea6db4e034b871e106a96bd9c9809.jpg');
-      background-size: cover;
+      background-image: url('1000314442.jpg');
+      background-size: 400px; /* puedes cambiar 300px o 500px según tu gusto */
       background-repeat: repeat;
       background-position: 0 0;
-      animation: fondoMovimiento 40s linear infinite;
+      animation: fondoMovimiento 60s linear infinite;
       color: #4b2e28;
       padding: 50px 40px;
       overflow-x: hidden;
     }
 
-    /* Animación del fondo en movimiento */
+    /* Movimiento del fondo */
     @keyframes fondoMovimiento {
       0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
-    }
-
-    /* Capa semitransparente para mejorar la legibilidad del contenido */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255, 240, 243, 0.8);
-      z-index: -1;
+      100% { background-position: 800px 800px; }
     }
 
     .site { max-width: 1100px; margin: 0 auto; }
