@@ -1,18 +1,38 @@
-<!doctype html>
+  <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dulce Tentación — Catálogo</title>
   <link rel="icon" href="1000314172.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(180deg, #fff0f3 0%, #ffe6eb 100%);
+      background-image: url('046ea6db4e034b871e106a96bd9c9809.jpg');
+      background-size: cover;
+      background-repeat: repeat;
+      background-position: 0 0;
+      animation: fondoMovimiento 40s linear infinite;
       color: #4b2e28;
       padding: 50px 40px;
       overflow-x: hidden;
+    }
+
+    /* Animación del fondo en movimiento */
+    @keyframes fondoMovimiento {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
+    /* Capa semitransparente para mejorar la legibilidad del contenido */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 240, 243, 0.8);
+      z-index: -1;
     }
 
     .site { max-width: 1100px; margin: 0 auto; }
@@ -93,11 +113,17 @@
       box-shadow: 0 10px 30px rgba(34, 34, 34, 0.06);
       border: 1px solid rgba(255, 192, 203, 0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.6s ease both;
     }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-8px) scale(1.03);
       box-shadow: 0 14px 35px rgba(34, 34, 34, 0.1);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .name {
@@ -176,7 +202,6 @@
     ];
 
     const grid = document.getElementById('catalogGrid');
-
     function money(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")}
 
     function render(filter='all'){
