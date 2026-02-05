@@ -249,50 +249,61 @@
 
   <script>
   const CATALOG = [
-    // ---- GRANDES ----
+
+    // ===== GRANDES =====
     {
       category:'grande',
       name:'Chocolate tradicional',
       size:'Grande',
-      desc:'Arequipe con fresas',
+      desc:'Bizcocho de chocolate relleno de arequipe con fresas frescas 🍓',
       price:75000
     },
     {
       category:'grande',
       name:'Chocolate sola',
       size:'Grande',
-      desc:'Solo chocolate',
+      desc:'Bizcocho de chocolate húmedo cubierto con crema de chocolate 🍫',
       price:60000
     },
 
-    // ---- MEDIANAS ----
+    // ===== MEDIANAS =====
     {
       category:'mediano',
       name:'Vainilla',
       size:'Mediano',
-      desc:'Clásica de vainilla',
+      desc:'Suave bizcocho de vainilla con cubierta cremosa 🤍',
       price:45000
     },
     {
       category:'mediano',
       name:'Vainilla chocolate',
       size:'Mediano',
-      desc:'Combinada vainilla y chocolate',
+      desc:'Combinación de vainilla y chocolate con doble sabor 🍰',
       price:53000
     },
+    {
+      category:'mediano',
+      name:'Zanahoria',
+      size:'Mediano',
+      desc:'Torta casera de zanahoria con especias y cubierta cremosa 🥕',
+      price:60000
+    },
 
-    // ---- DIABÉTICA ----
+    // ===== DIABÉTICA =====
     {
       category:'diabetico',
       name:'Zanahoria diabética',
       size:'Único tamaño',
-      desc:'Especial sin azúcar',
+      desc:'Torta de zanahoria sin azúcar, especial para diabéticos 🥕',
       price:40000
     }
   ];
 
   const grid = document.getElementById('catalogGrid');
-  function money(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")}
+
+  function money(n){
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")
+  }
 
   function pedirPorWhatsApp(nombre, tamaño) {
     const numero = "573245328182";
@@ -308,24 +319,32 @@
 
   function render(filter='all'){
     grid.innerHTML='';
-    const items=CATALOG.filter(p=>filter==='all'?true:p.category===filter);
+
+    const items = CATALOG.filter(p =>
+      filter==='all' ? true : p.category===filter
+    );
 
     items.forEach((item)=>{
       const el=document.createElement('div');
       el.className='card';
+
       el.innerHTML=`
         <div class="name">${item.name}</div>
-        <div class="desc">${item.size} — ${item.desc}</div>
+        <div class="desc">${item.desc}</div>
+        <div class="desc"><b>Tamaño:</b> ${item.size}</div>
         <div class="price">$${money(item.price)}</div>
+
         <div class="acciones">
           <button onclick="pedirPorWhatsApp('${item.name}','${item.size}')">
-            WA&nbsp;Pedir por WhatsApp
+            WA&nbsp;Pedir
           </button>
+
           <button onclick="abrirInstagram()">
-            IG&nbsp;Instagram
+            IG&nbsp;Ver más
           </button>
         </div>
       `;
+
       grid.appendChild(el);
     });
   }
@@ -334,14 +353,18 @@
 
   document.querySelectorAll('.chip').forEach(chip=>{
     chip.addEventListener('click',()=>{
-      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      document.querySelectorAll('.chip')
+        .forEach(c=>c.classList.remove('active'));
+
       chip.classList.add('active');
       render(chip.dataset.filter);
     });
   });
 
-  document.getElementById('ano').textContent=new Date().getFullYear();
+  document.getElementById('ano').textContent =
+    new Date().getFullYear();
 </script>
+
 
 </body>
 </html>
