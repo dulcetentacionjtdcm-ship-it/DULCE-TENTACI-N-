@@ -76,17 +76,28 @@
     }
 
     /* ===== FILTROS ===== */
-    .filters{text-align:center;margin-bottom:30px}
+    .filters{
+  display:flex;
+  flex-wrap:wrap;        /* permite que bajen ordenados */
+  justify-content:center;
+  gap:10px;              /* espacio parejo */
+  margin-bottom:30px;
+}
 
-    .chip{
-      background:#ffe9cf;
-      border:1px solid #d6a77a;
-      padding:10px 16px;
-      border-radius:30px;
-      cursor:pointer;
-      margin:6px;
-      font-weight:600;
-      transition:.3s;
+
+  .chip{
+  background:#ffe9cf;
+  border:1px solid #d6a77a;
+  padding:10px 16px;
+  border-radius:30px;
+  cursor:pointer;
+  margin:0;              /* quita el margin viejo */
+  font-weight:600;
+  transition:.3s;
+  min-width:110px;      /* ← esto los empareja */
+  text-align:center;
+}
+
     }
 
     .chip:hover,.chip.active{
